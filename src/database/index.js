@@ -7,14 +7,13 @@ const models = [User];
 class connection {
 
     constructor() {
-        this.conn = this.init();
+        this.exec = this.init();
 
-        models.map(model => model.init(this.conn));
+        models.map(model => model.init(this.exec));
     }
 
     init() {
         this.connect = new sequelize(configDatabase);
-
     }
 }
 
