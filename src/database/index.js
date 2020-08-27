@@ -1,8 +1,9 @@
 import Sequelize from 'sequelize';
 import configDatabase from '../config/configDatabase';
 import User from '../app/model/userModel';
+import Recipient from '../app/model/recipientsModel';
 
-const models = [User];
+const models = [User, Recipient];
 
 class connection {
 
