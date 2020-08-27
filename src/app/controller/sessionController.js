@@ -2,9 +2,20 @@ import jwt from 'jsonwebtoken';
 import auth from '../../config/auth';
 import User from '../model/userModel';
 import cryptography from 'bcrypt';
+import * as yup from 'yup';
 
 class SessionController {
-    async store(request, response,next) {
+    async store(request, response) {
+        const schema = yup.object().shape({
+            email: yup.string().email().required(),
+            password: yup.string().required()
+        });
+        
+        if(!(await schema.isValid(request.body))) {
+            return await response.status(406).json({
+                error: "Body not are complete"
+            });
+        }
         const {email, password} = request.body;
         const fetchUser = await User.findOne({where: {email}});
         const {id,name} = fetchUser;
