@@ -10,6 +10,6 @@ routers.post("/register",UserController.store);
 routers.post("/session", SessionController.store);
 
 routers.use(authMiddleware);
-routers.get("/registered/updated", RecipientController.store);
+routers.post("/registered/updated", RecipientController.store);
 
 export default routers;
