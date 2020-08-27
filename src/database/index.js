@@ -1,4 +1,4 @@
-import sequelize from 'sequelize';
+import Sequelize from 'sequelize';
 import configDatabase from '../config/configDatabase';
 import User from '../app/model/userModel';
 
@@ -8,12 +8,12 @@ class connection {
 
     constructor() {
         this.exec = this.init();
-
-        models.map(model => model.init(this.exec));
     }
 
     init() {
-        this.connect = new sequelize(configDatabase);
+        this.connect = new Sequelize(configDatabase);
+        
+        models.map(model => model.init(this.connect));
     }
 }
 
