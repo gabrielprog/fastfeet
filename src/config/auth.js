@@ -1,4 +1,4 @@
 module.exports = {
-    auth_password: '16514056f5a644a83a58114b34273bd5',
+    auth_password: process.env.APP_SECRET,
     auth_expiresIn: '5d'
 }
