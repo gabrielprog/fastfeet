@@ -2,20 +2,26 @@ import Sequelize from 'sequelize';
 import configDatabase from '../config/configDatabase';
 import User from '../app/model/userModel';
 import Recipient from '../app/model/recipientsModel';
+import Deliveryman from '../app/model/deliverymanModel';
+import Avatar from '../app/model/avatarModel';
 import mongoose from 'mongoose';
 
-const models = [User, Recipient];
+const models = [User, Recipient,Deliveryman,Avatar];
 
 class connection {
 
     constructor() {
-        this.exec = this.init();
+        this.init();
+        this.mongo();
     }
 
     init() {
         this.connect = new Sequelize(configDatabase);
         
-        models.map(model => model.init(this.connect));
+        models
+        .map(model => model.init(this.connect));
+        models
+        .map(model => model.associate && model.associate(this.connect.models));
     }
 
     mongo() {
