@@ -61,6 +61,16 @@ class DeliverymanController {
             name: updateName
         });
     }
+
+    async delete(request, response) {
+        const {id} = request.params;
+
+        const fetchUser = await Deliveryman.findByPk(id);
+
+        fetchUser.destroy();
+
+        return response.status(200).json({status: true});
+    }
 }
 
 export default new DeliverymanController();
