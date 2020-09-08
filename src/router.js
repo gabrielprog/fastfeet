@@ -11,10 +11,8 @@ routers.post("/register",UserController.store);
 routers.post("/session", SessionController.store);
 
 
-routers.get('/admin/deliverymans', DeliverymanController.index);
-
 routers.use(authMiddleware);
-
+routers.get('/admin/deliverymans', DeliverymanController.index);
 
 routers.post("/registered/updated", RecipientController.store);
 
