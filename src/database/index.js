@@ -5,9 +5,10 @@ import Recipient from '../app/model/recipientsModel';
 import Deliveryman from '../app/model/deliverymanModel';
 import Avatar from '../app/model/avatarModel';
 import Signature from '../app/model/signatureModel';
+import Order from '../app/model/orderModel';
 import mongoose from 'mongoose';
 
-const models = [User, Recipient, Deliveryman, Avatar, Signature];
+const models = [User, Recipient, Deliveryman, Avatar, Signature, Order];
 
 class connection {
 
