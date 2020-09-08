@@ -10,7 +10,7 @@ import checkAdminMiddleware from './app/middleware/checkAdminMiddleware';
 import configMulter from './config/configMulter';
 
 const routers = Router();
-const upload = multer(configMulter);
+const avatarUpload = multer(configMulter.avatar);
 // ADMIN RESPONSIBILITY
 routers.post("/register",UserController.store);
 routers.post("/session", SessionController.store);
@@ -22,7 +22,7 @@ routers.get('/admin/deliverymans', checkAdminMiddleware, DeliverymanController.i
 routers.put('/admin/deliverymans', checkAdminMiddleware, DeliverymanController.update);
 routers.delete('/admin/deliverymans/:id', checkAdminMiddleware, DeliverymanController.delete);
 routers.post('/admin/deliverymans', checkAdminMiddleware, DeliverymanController.store);
-routers.post('/admin/deliverymans/upload', checkAdminMiddleware, upload.single('file'), AvatarController.store);
+routers.post('/admin/deliverymans/upload', checkAdminMiddleware, avatarUpload.single('file'), AvatarController.store);
 
 // RECIPIENT RESPONSIBILITY
 routers.post("/registered/updated", RecipientController.store);
