@@ -15,6 +15,7 @@ routers.post("/session", SessionController.store);
 routers.use(authMiddleware);
 routers.get('/admin/deliverymans', checkAdminMiddleware, DeliverymanController.index);
 
+routers.post('/admin/deliverymans', checkAdminMiddleware, DeliverymanController.store);
 routers.post("/registered/updated", RecipientController.store);
 
 export default routers;
