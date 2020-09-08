@@ -31,6 +31,36 @@ class DeliverymanController {
        
        return response.status(201).json(deliveryman);
     }
+
+    async update(request, response) {
+        const schema = yup.object().shape({
+            id: yup.number().required(),
+            name: yup.string()
+        });
+        
+        if(!(await schema.isValid(request.body))) {
+            return await response.status(406).json({
+                error: "Body not are complete"
+            });
+        }
+        const {id, name} = request.body;
+        const fetchUser = await Deliveryman.findByPk(id);
+
+        if(!fetchUser){
+            return response.status(400).json({error: 'Deliveryman not found'});
+        }
+
+        fetchUser.name = name;
+
+        await fetchUser.save();
+
+        const {name: updateName} = fetchUser;
+
+        return response.status(200).json({
+            id,
+            name: updateName
+        });
+    }
 }
 
 export default new DeliverymanController();

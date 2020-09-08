@@ -11,11 +11,13 @@ const routers = Router();
 routers.post("/register",UserController.store);
 routers.post("/session", SessionController.store);
 
-
 routers.use(authMiddleware);
+
 routers.get('/admin/deliverymans', checkAdminMiddleware, DeliverymanController.index);
 
 routers.post('/admin/deliverymans', checkAdminMiddleware, DeliverymanController.store);
 routers.post("/registered/updated", RecipientController.store);
+
+routers.put('/admin/deliverymans', checkAdminMiddleware, DeliverymanController.update);
 
 export default routers;
