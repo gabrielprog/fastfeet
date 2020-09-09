@@ -3,3 +3,4 @@ src/database/seeds
 .env
 required_application.md
 tmp/uploads/*
+.vscode
