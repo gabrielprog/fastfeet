@@ -6,6 +6,12 @@ import Deliveryman from '../model/deliverymanModel';
 import Mail from '../../lib/Mail';
 
 class OrderController {
+    async index(request, response){
+        const orderList = await Order.findAll();
+
+        return response.status(200).json(orderList);
+    }
+
     async store(request, response){
        
         const schema = yup.object().shape({

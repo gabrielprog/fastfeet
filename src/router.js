@@ -20,6 +20,7 @@ routers.use(authMiddleware);
 
 // DELIVERYMAN RESPONSIBILITY
 routers.get('/admin/deliverymans', checkAdminMiddleware, DeliverymanController.index);
+routers.get('/admin/order', checkAdminMiddleware, OrderController.index);
 routers.put('/admin/deliverymans', checkAdminMiddleware, DeliverymanController.update);
 routers.delete('/admin/deliverymans/:id', checkAdminMiddleware, DeliverymanController.delete);
 routers.post('/admin/deliverymans', checkAdminMiddleware, DeliverymanController.store);
