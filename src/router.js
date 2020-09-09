@@ -5,6 +5,7 @@ import SessionController from './app/controller/sessionController';
 import RecipientController from './app/controller/recipientController';
 import DeliverymanController from './app/controller/deliverymanController';
 import AvatarController from './app/controller/avatarController';
+import OrderController from './app/controller/orderController';
 import authMiddleware from './app/middleware/authMiddleware';
 import checkAdminMiddleware from './app/middleware/checkAdminMiddleware';
 import configMulter from './config/configMulter';
@@ -23,6 +24,7 @@ routers.put('/admin/deliverymans', checkAdminMiddleware, DeliverymanController.u
 routers.delete('/admin/deliverymans/:id', checkAdminMiddleware, DeliverymanController.delete);
 routers.post('/admin/deliverymans', checkAdminMiddleware, DeliverymanController.store);
 routers.post('/admin/deliverymans/upload', checkAdminMiddleware, avatarUpload.single('file'), AvatarController.store);
+routers.post('/admin/order', checkAdminMiddleware, OrderController.store);
 
 // RECIPIENT RESPONSIBILITY
 routers.post("/registered/updated", RecipientController.store);
