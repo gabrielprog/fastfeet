@@ -18,7 +18,7 @@ class OrderController {
             recipient_id: yup.number().required(),
             deliveryman_id: yup.number().required(),
             product: yup.string().required(),
-            start_date: yup.date().required()
+            start_date: yup.date()
         });
         
         if(!(await schema.isValid(request.body))) {
