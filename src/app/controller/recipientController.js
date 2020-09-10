@@ -10,7 +10,7 @@ class RecipientController {
             name: yup.string().required()
         });
         
-        if(!(await schema.isValid(request.tokenData))) {
+        if(!(await schema.isValid(request.body))) {
             return await response.status(406).json({
                 error: "Body not are complete"
             });
