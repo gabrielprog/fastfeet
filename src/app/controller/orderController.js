@@ -87,6 +87,31 @@ class OrderController {
         });
         return response.status(200).json(deliverymanOrder);
     }
+
+    async update(request, response){
+        const schema = yup.object().shape({
+            id: yup.number().required(),
+            recipient_id: yup.number(),
+            deliveryman_id: yup.number(),
+            product: yup.string(),
+            start_date: yup.date()
+        });
+        
+        if(!(await schema.isValid(request.body))) {
+            return await response.status(406).json({
+                error: "Body not are complete"
+            });
+        }
+        const {id} = request.body;
+        const orderUpdate = await Order.update(request.body, {
+            where: {
+                id
+            }
+        });
+        
+
+        return response.status(200).json({status: true});
+    }
 }
 
 export default new OrderController();
