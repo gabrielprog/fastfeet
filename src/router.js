@@ -24,6 +24,7 @@ routers.get('/admin/order', checkAdminMiddleware, OrderController.index);
 routers.put('/admin/order', checkAdminMiddleware, OrderController.update);
 routers.put('/admin/deliverymans', checkAdminMiddleware, DeliverymanController.update);
 routers.delete('/admin/deliverymans/:id', checkAdminMiddleware, DeliverymanController.delete);
+routers.delete('/admin/order/:id', checkAdminMiddleware, OrderController.delete);
 routers.post('/admin/deliverymans', checkAdminMiddleware, DeliverymanController.store);
 routers.post('/admin/deliverymans/upload', checkAdminMiddleware, avatarUpload.single('file'), AvatarController.store);
 routers.post('/admin/order', checkAdminMiddleware, OrderController.store);

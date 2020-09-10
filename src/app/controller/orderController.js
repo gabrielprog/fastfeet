@@ -112,6 +112,16 @@ class OrderController {
 
         return response.status(200).json({status: true});
     }
+
+    async delete(request, response) {
+        const {id} = request.params;
+
+        const fetchUser = await Order.findByPk(id);
+
+        fetchUser.destroy();
+
+        return response.status(200).json({status: true});
+    }
 }
 
 export default new OrderController();
