@@ -4,6 +4,7 @@ import UserController from './app/controller/userController';
 import SessionController from './app/controller/sessionController';
 import RecipientController from './app/controller/recipientController';
 import DeliverymanController from './app/controller/deliverymanController';
+import DeliverieController from './app/controller/deliverieController';
 import AvatarController from './app/controller/avatarController';
 import OrderController from './app/controller/orderController';
 import authMiddleware from './app/middleware/authMiddleware';
@@ -15,6 +16,9 @@ const avatarUpload = multer(configMulter.avatar);
 // ADMIN RESPONSIBILITY
 routers.post("/register",UserController.store);
 routers.post("/session", SessionController.store);
+
+// DELIVERYMAN GET ORDER RESPONSIBILITY
+routers.get('/deliveryman/:id/deliveries', DeliverieController.index);
 
 routers.use(authMiddleware);
 
