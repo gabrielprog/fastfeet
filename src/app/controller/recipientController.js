@@ -4,15 +4,15 @@ import * as yup from 'yup';
 
 class RecipientController {
     async store(request, response, next) {
-        const schemaToken = yup.object().shape({
+        const schema = yup.object().shape({
             id: yup.number().required(),
             email: yup.string().email().required(),
             name: yup.string().required()
         });
         
-        if(!(await schemaToken.isValid(request.tokenData))) {
+        if(!(await schema.isValid(request.tokenData))) {
             return await response.status(406).json({
-                error: "Token not are complete"
+                error: "Body not are complete"
             });
         }
         const {id} = request.tokenData;
