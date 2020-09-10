@@ -7,6 +7,7 @@ import DeliverymanController from './app/controller/deliverymanController';
 import DeliverieController from './app/controller/deliverieController';
 import AvatarController from './app/controller/avatarController';
 import OrderController from './app/controller/orderController';
+import StartorderController from './app/controller/startorderController';
 import authMiddleware from './app/middleware/authMiddleware';
 import checkAdminMiddleware from './app/middleware/checkAdminMiddleware';
 import configMulter from './config/configMulter';
@@ -19,6 +20,7 @@ routers.post("/session", SessionController.store);
 
 // DELIVERYMAN GET ORDER RESPONSIBILITY
 routers.get('/deliveryman/:id/deliveries', DeliverieController.index);
+routers.post('/deliveryman/:id/startorder', StartorderController.store);
 
 routers.use(authMiddleware);
 
