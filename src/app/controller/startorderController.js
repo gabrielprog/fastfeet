@@ -50,14 +50,14 @@ class StartorderController {
         }
         const {id: deliveryId} = request.params;
 
-        const startOrder = await Order.update(request.body, {
+        await Order.update(request.body, {
             where: {
                 deliveryman_id: deliveryId,
                 id
             }
         });
     
-        return response.status(200).json(startOrder);
+        return response.status(200).json({status: true});
    }
 }
 
