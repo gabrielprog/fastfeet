@@ -9,6 +9,7 @@ import AvatarController from './app/controller/avatarController';
 import OrderController from './app/controller/orderController';
 import StartorderController from './app/controller/startorderController';
 import EndorderController from './app/controller/endorderController';
+import DeliveryproblemController from './app/controller/deliveryproblemController';
 import authMiddleware from './app/middleware/authMiddleware';
 import checkAdminMiddleware from './app/middleware/checkAdminMiddleware';
 import configMulter from './config/configMulter';
@@ -25,6 +26,9 @@ routers.post('/deliveryman/:id/startorder', StartorderController.store);
 routers.post('/deliveryman/:id/endorder', EndorderController.store);
 
 routers.use(authMiddleware);
+
+// DELIVERY PROBLEMS RESPONSIBILITY
+routers.get('/problems', checkAdminMiddleware, DeliveryproblemController.index);
 
 // DELIVERYMAN RESPONSIBILITY
 routers.get('/admin/deliverymans', checkAdminMiddleware, DeliverymanController.index);
