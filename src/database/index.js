@@ -9,7 +9,7 @@ import Order from '../app/model/orderModel';
 import Deliveryproblems from '../app/model/deliveryproblemModel';
 import mongoose from 'mongoose';
 
-const models = [User, Recipient, Deliveryman, Avatar, Signature, Order, Deliveryman];
+const models = [User, Recipient, Deliveryman, Avatar, Signature, Order, Deliveryproblems];
 
 class connection {
 
