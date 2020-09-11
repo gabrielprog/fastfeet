@@ -10,6 +10,7 @@ import OrderController from './app/controller/orderController';
 import StartorderController from './app/controller/startorderController';
 import EndorderController from './app/controller/endorderController';
 import DeliveryproblemController from './app/controller/deliveryproblemController';
+import DeliveryproblemForIdController from './app/controller/deliveryproblemsfetchforidController';
 import authMiddleware from './app/middleware/authMiddleware';
 import checkAdminMiddleware from './app/middleware/checkAdminMiddleware';
 import configMulter from './config/configMulter';
@@ -29,6 +30,7 @@ routers.use(authMiddleware);
 
 // DELIVERY PROBLEMS RESPONSIBILITY
 routers.get('/problems', checkAdminMiddleware, DeliveryproblemController.index);
+routers.get('/problem/:id', DeliveryproblemForIdController.index);
 
 // DELIVERYMAN RESPONSIBILITY
 routers.get('/admin/deliverymans', checkAdminMiddleware, DeliverymanController.index);
