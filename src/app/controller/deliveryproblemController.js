@@ -10,9 +10,7 @@ class DeliveryproblemController {
     }
 
     async store(request, response){
-        
         const schema = yup.object().shape({
-            delivery_id: yup.number().required(),
             description: yup.string().required()
         });
         
@@ -22,6 +20,15 @@ class DeliveryproblemController {
             });
         }
 
+        const {id} = request.params;
+        const {description} = request.body;
+
+        const putProblem = await Deliveryproblem.create({
+            delivery_id: id,
+            description
+        });
+
+        return response.status(201).json(putProblem);
     }
 }
 

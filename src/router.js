@@ -31,6 +31,7 @@ routers.use(authMiddleware);
 // DELIVERY PROBLEMS RESPONSIBILITY
 routers.get('/problems', checkAdminMiddleware, DeliveryproblemController.index);
 routers.get('/problem/:id', DeliveryproblemForIdController.index);
+routers.post('/problem/:id', DeliveryproblemController.store);
 
 // DELIVERYMAN RESPONSIBILITY
 routers.get('/admin/deliverymans', checkAdminMiddleware, DeliverymanController.index);
