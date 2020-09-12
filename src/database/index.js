@@ -7,15 +7,14 @@ import Avatar from '../app/model/avatarModel';
 import Signature from '../app/model/signatureModel';
 import Order from '../app/model/orderModel';
 import Deliveryproblems from '../app/model/deliveryproblemModel';
-import mongoose from 'mongoose';
+import Daylimit from '../app/model/daylimitModel';
 
-const models = [User, Recipient, Deliveryman, Avatar, Signature, Order, Deliveryproblems];
+const models = [User, Recipient, Deliveryman, Avatar, Signature, Order, Deliveryproblems, Daylimit];
 
 class connection {
 
     constructor() {
         this.init();
-        this.mongo();
     }
 
     init() {
@@ -25,13 +24,6 @@ class connection {
         .map(model => model.init(this.connect));
         models
         .map(model => model.associate && model.associate(this.connect.models));
-    }
-
-    mongo() {
-    	this.connectMongo = mongoose.connect(
-    		process.env.MONGO_URL,
-    		{ useNewUrlParser: true, useFindAndModify: true}
-    		);
     }
 }
 
