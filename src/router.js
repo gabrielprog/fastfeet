@@ -25,7 +25,7 @@ routers.post("/session", SessionController.store);
 // DELIVERYMAN GET ORDER RESPONSIBILITY
 routers.get('/deliveryman/:id/deliveries', DeliverieController.index);
 routers.post('/deliveryman/:id/startorder/', StartorderController.store);
-routers.post('/deliveryman/:id/endorder', EndorderController.store);
+routers.post('/deliveryman/:deliverymanId/endorder/:orderId', signatureUpload.single('file'), EndorderController.store);
 
 routers.use(authMiddleware);
 

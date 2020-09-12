@@ -1,28 +1,25 @@
 import Order from '../model/orderModel';
-import * as yup from 'yup';
+import Signature from '../model/signatureModel';
 
 class EndorderController {
    async store(request, response){
-        const schema = yup.object().shape({
-            id: yup.number().required(),
-            end_date: yup.date().required()
-        });
-        
-        if(!(await schema.isValid(request.body))) {
-            return await response.status(406).json({
-                error: "Body not are complete"
-            });
-        }
-        
-        const {id} = request.body;
-        const {id: deliveryId} = request.params;
-
-        await Order.update(request.body, {
+        const {deliverymanId, orderId} = request.params;
+        const fetchOrder = await Order.findOne({
             where: {
-                deliveryman_id: deliveryId,
-                id
+                deliveryman_id: deliverymanId,
+                id: orderId
             }
         });
+        fetchOrder.end_date = new Date();
+        fetchOrder.save();
+        
+        const {filename: path_file, originalname: name_file} = request.file;
+        await Signature.create({
+            recipient_id: fetchOrder.recipient_id,
+            path_file,
+            name_file
+        });
+
     
         return response.status(200).json({status: true});
    }
