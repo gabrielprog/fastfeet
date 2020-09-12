@@ -3,6 +3,7 @@ import  Sequelize, {Model} from 'sequelize';
 class Signature extends Model {
     static init(sequelize) {
         super.init({
+            recipient_id: Sequelize.INTEGER,
             path_file: Sequelize.STRING
         },
         {
