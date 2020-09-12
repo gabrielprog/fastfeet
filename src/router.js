@@ -17,13 +17,14 @@ import configMulter from './config/configMulter';
 
 const routers = Router();
 const avatarUpload = multer(configMulter.avatar);
+const signatureUpload = multer(configMulter.signature);
 // ADMIN RESPONSIBILITY
 routers.post("/register",UserController.store);
 routers.post("/session", SessionController.store);
 
 // DELIVERYMAN GET ORDER RESPONSIBILITY
 routers.get('/deliveryman/:id/deliveries', DeliverieController.index);
-routers.post('/deliveryman/:id/startorder', StartorderController.store);
+routers.post('/deliveryman/:id/startorder', signatureUpload.single('file'), StartorderController.store);
 routers.post('/deliveryman/:id/endorder', EndorderController.store);
 
 routers.use(authMiddleware);
