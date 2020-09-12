@@ -1,6 +1,7 @@
 import Order from '../model/orderModel';
+import Daylimit from '../model/daylimitModel';
 import * as yup from 'yup';
-import {format, parseISO, startOfHour, isBefore} from 'date-fns';
+import {format, parseISO, startOfHour, isBefore, isToday} from 'date-fns';
 
 class StartorderController {
    async store(request, response){
@@ -49,6 +50,36 @@ class StartorderController {
             return response.status(400).json({error: 'Hour day is passed'});
         }
         const {id: deliveryId} = request.params;
+
+        const daylimit = async () => {
+            const fetchAllDate = await Daylimit.findAll({
+                where: {
+                    deliveryman_id: deliveryId
+                }
+            });
+
+            if(fetchAllDate.length === 0) {
+                await Daylimit.create({
+                    deliveryman_id: deliveryId,
+                    date: new Date()
+                });
+                return true;
+            }
+
+            for(var i in fetchAllDate) {
+                if(isToday(fetchAllDate[i].date) && fetchAllDate[i].count_used >= 5){
+                    return false;
+                }
+            }
+        
+            fetchAllDate[i].count_used = Number(fetchAllDate[i].count_used) + 1;
+            fetchAllDate[i].save(); 
+            return true;
+        };
+        
+        if(!(await daylimit())){
+            return response.status(200).status(400).json({error: 'Seu limite de retirada já foi esgotado'})
+        }
 
         await Order.update(request.body, {
             where: {
