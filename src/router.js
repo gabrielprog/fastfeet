@@ -32,6 +32,7 @@ routers.use(authMiddleware);
 routers.get('/problems', checkAdminMiddleware, DeliveryproblemController.index);
 routers.get('/problem/:id', DeliveryproblemForIdController.index);
 routers.post('/problem/:id', DeliveryproblemController.store);
+routers.delete('/problem/:id', DeliveryproblemController.delete);
 
 // DELIVERYMAN RESPONSIBILITY
 routers.get('/admin/deliverymans', checkAdminMiddleware, DeliverymanController.index);
